@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h3>Contact Details</h3>
+<form class="form-group" method="get" action="get/">
+	<table class="table-condensed col-md-3">
+	<tr>
+		<td >Name </td><td><input type="text" name="name" class="form-control" required/></td>
+	</tr>
+	<tr>
+		<td>	Contact No </td><td><input type="number" name="contact" class="form-control" required/></td>
+	</tr>	
+	<tr>
+		<td>	Email-id  </td><td><input type="email" name="email" class="form-control" required	/></td>
+	</tr>	
+	<tr>
+		<td><a class="btn btn-primary btn-md" onclick="polls_section()"/>Proceed</a></td>
+	</tr>
+	</table>
+	<div class="col-md-9" id="polls_sect" style="display:none;border:solid 2px;border-radius:5px">
+	<h3>Questions</h3>
+	<hr>
+	{% for q in data %}
+		<h3>{{ q.id }}.{{q.question}}</h3><br>
+			<input type="radio"  value="{{q.option1}}" name="{{q.id}}" id="{{q.id}}"/>{{q.option1}}
+			<input type="radio" value="{{q.option2}}" name="{{q.id}}" id="{{q.id}}"/>{{q.option2}}
+			<input type="radio" value="{{q.option3}}" name="{{q.id}}" id="{{q.id}}"/>{{q.option3}}
+			<input type="radio" value="{{q.option3}}" name="{{q.id}}" id="{{q.id}}"/>{{q.option4}}
+			<hr>
+	{% endfor %}
+	{% for w in data2 %}
+		<h3>{{ w.tq_no }}.{{w.tfquestion}}</h3><br>
+			<input type="radio" value="{{w.tfoption1}}" name="{{w.tq_no}}" id="{{w.tq_no}}"/>{{w.tfoption1}}
+			<input type="radio" value="{{w.tfoption2}}" name="{{w.tq_no}}" id="{{w.tq_no}}"/>{{w.tfoption2}}
+		<hr>
+	{% endfor %}
+	{% for v in data3 %}
+		<h3>{{ v.txtq_no }}.{{v.txtquestion}}</h3><br>
+			<input type="text"  name="{{v.txtq_no}}" id="{{v.txtq_no}}" required/>
+			<hr>
+	{% endfor %}
+	<br><br>
+	<input type="submit" class="btn btn-primary" value="Submit"/>
+		<input type="reset" class="btn btn-danger" value="Reset"/>
+	</div>
+	
+	
+</form>
+<script type="text/javascript">
+	function polls_section()
+	{
+		
+		document.getElementById('polls_sect').style.display='block';
+	}
+
+</script>
+	
+{% endblock %}
